@@ -10,7 +10,7 @@ COPY ./moments-space.api/ ./
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
-FROM microsoft/dotnet:2.1-sdk
+FROM microsoft/dotnet:3.1-sdk
 WORKDIR /app
 COPY --from=build-env /app/out .
 CMD ASPNETCORE_URLS=http://*:$PORT dotnet momentsspaceapi.dll
