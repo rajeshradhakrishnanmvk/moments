@@ -7,7 +7,7 @@ jobs:
 
      # test
      - run: |
-         docker-compose -f ./moments-api/moments-spacedocker-compose.unittests.yml run --rm unittests
+         docker-compose -f ./moments-api/moments-space/docker-compose.unittests.yml run --rm unittests
          
      # build image
      - run: |
