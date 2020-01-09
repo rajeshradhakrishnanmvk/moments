@@ -3,7 +3,7 @@ jobs:
  build:
    machine: true
    steps:
-     - checkout
+     - checkout ./moments-api/moments-space
 
      # test
      - run: |
