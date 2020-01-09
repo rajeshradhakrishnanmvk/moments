@@ -3,11 +3,11 @@ jobs:
  build:
    machine: true
    steps:
-     - checkout ./moments-api/moments-space
+     - checkout 
 
      # test
      - run: |
-         docker-compose -f docker-compose.unittests.yml run --rm unittests
+         docker-compose -f ./moments-api/moments-spacedocker-compose.unittests.yml run --rm unittests
          
      # build image
      - run: |
