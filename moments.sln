@@ -1,0 +1,37 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "moments", "moments.api\moments.space", "{5F396160-70BE-488F-95D3-33647B2F556B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "moments.space.api", "moments.api\moments.space\moments.space.api\moments.space.api.csproj", "{36FD54B5-9C50-4C40-A556-79A403CD66D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "moments.space.tests", "moments.api\moments.space\moments.space.tests\moments.space.tests.csproj", "{1436B399-348C-42ED-9624-6987E0928F5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36FD54B5-9C50-4C40-A556-79A403CD66D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36FD54B5-9C50-4C40-A556-79A403CD66D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36FD54B5-9C50-4C40-A556-79A403CD66D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36FD54B5-9C50-4C40-A556-79A403CD66D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1436B399-348C-42ED-9624-6987E0928F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1436B399-348C-42ED-9624-6987E0928F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1436B399-348C-42ED-9624-6987E0928F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1436B399-348C-42ED-9624-6987E0928F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36FD54B5-9C50-4C40-A556-79A403CD66D7} = {5F396160-70BE-488F-95D3-33647B2F556B}
+		{1436B399-348C-42ED-9624-6987E0928F5E} = {5F396160-70BE-488F-95D3-33647B2F556B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72CE2257-8A93-46CA-A868-54E61897ABD2}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+
+ POST "http://localhost:5000/api/Moments/rajesh" -H "accept: */*" -H "Content-Type: application/json" -d "{\"id\":1,\"nasaId\":\"309085\",\"title\":\"Test\",\"descirption\":\"Test Description\",\"createdBy\":\"rajesh\",\"creationDate\":\"2020-01-26T13:42:57.242Z\",\"href\":\"string\",\"category\":{\"id\":1,\"name\":\"Test Cate\",\"description\":\"Test Cate Desc\",\"createdBy\":\"rajesh\",\"creationDate\":\"2020-01-26T13:42:57.242Z\"}}"
+
+
+# {
+#   "id": 1,
+#   "nasaId": "309085",
+#   "title": "Test",
+#   "descirption": "Test Description",
+#   "createdBy": "rajesh",
+#   "creationDate": "2020-01-26T13:42:57.242Z",
+#   "href": "string",
+#   "category": {
+#     "id": 1,
+#     "name": "Test Cate",
+#     "description": "Test Cate Desc",
+#     "createdBy": "rajesh",
+#     "creationDate": "2020-01-26T13:42:57.242Z"
+#   }
+# }

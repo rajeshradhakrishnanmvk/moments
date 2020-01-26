@@ -1,0 +1,44 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "dotnet-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                // Ask dotnet build to generate full paths for file names.
+                "/property:GenerateFullPaths=true",
+                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.space/moments.space.api/moments.space.api.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "angular-build",
+            "type": "shell",
+            "command": "ng",
+            "args": [
+                "build",
+                "--watch"
+            ],
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": "$tsc"
+        },{
+            "label": "moments-build",
+            "dependsOn":[
+                "dotnet-build",
+                "angular-build"
+            ],
+            "group": "build"
+        }
+    ]
+}

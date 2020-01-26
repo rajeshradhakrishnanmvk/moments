@@ -1,0 +1,177 @@
+stages:
+- init
+- test
+- build
+- deploy
+
+variables:
+  DIST_DIR: dist/moments-ui
+  IMAGE: registry.heroku.com/moments-ui/web
+  CLI_VERSION: 7.3.9
+
+cache:
+  key: ${CI_COMMIT_SHA}
+  paths: ['moments-ui/node_modules']
+
+before_script:
+- cd moments-ui
+- "[ -d node_modules ] || npm ci"
+
+init:
+  stage: init
+  image: ng-cli:${CLI_VERSION}
+  script: ['']
+  cache:
+    policy: push
+    key: ${CI_COMMIT_SHA}
+    paths: ['moments-ui/node_modules']
+  tags:
+  - docker
+  - gce
+
+lint:nglint:
+  stage: test
+  image: ng-cli:${CLI_VERSION}
+  script:
+  - ng lint
+  tags:
+  - docker
+  - gce
+
+lint:sonar:
+  stage: test
+  image: ng-cli:${CLI_VERSION}
+  script:
+  - npm install -g sonarqube-scanner
+  - >
+      sonar-scanner
+      -Dsonar.projectKey=demo
+      -Dsonar.organization=everflux-github
+      -Dsonar.host.url=https://sonarcloud.io
+      -Dsonar.login=d845eb783684e8d78c36c48ae92a971b92151976
+      -Dsonar.typescript.lcov.reportPaths=coverage/lcov/lcov.info
+      -Dsonar.sourceEncoding=UTF-8
+      -Dsonar.sources=src/app
+      -Dsonar.exclusions=**/node_modules/**,**/*.spec.ts
+      -Dsonar.tests=src/app
+      -Dsonar.test.inclusions=**/*.spec.ts
+
+test:karma:
+  stage: test
+  image: ng-cli-karma:${CLI_VERSION}
+  allow_failure: false
+  script:
+  - ng test --code-coverage --progress false --watch false
+  coverage: '/Lines \W+: (\d+\.\d+)%.*/'
+  artifacts:
+    paths:
+    - moments-ui/coverage/
+  tags:
+  - docker
+  - gce
+
+test:jest:
+  stage: test
+  image: ng-cli:${CLI_VERSION}
+  allow_failure: false
+  script:
+  - npm run test:jest
+  tags:
+  - docker
+  - gce
+
+test:e2e:
+  stage: test
+  image: ng-cli-e2e:${CLI_VERSION}
+  allow_failure: false
+  script:
+    - ng e2e
+  tags:
+    - docker
+    - gce
+
+test:browserstack:
+  stage: test
+  image: ng-cli:${CLI_VERSION}
+  allow_failure: false
+  script:
+    - npm run test:browserstack:ci
+  tags:
+    - docker
+    - gce
+
+test:saucelabs:
+  stage: test
+  image: ng-cli:${CLI_VERSION}
+  allow_failure: false
+  script:
+    - wget https://saucelabs.com/downloads/sc-4.5.4-linux.tar.gz
+    - tar -zxf sc-4.5.4-linux.tar.gz
+    - sc-4.5.4-linux/bin/sc -u ${SAUCELABS_NAME} -k ${SAUCELABS_KEY} -x https://eu-central-1.saucelabs.com/rest/v1 &
+    - npm run test:saucelabs:ci
+  tags:
+    - docker
+    - gce
+
+build:
+  stage: build
+  image: ng-cli-karma:${CLI_VERSION}
+  script:
+  - ng build --prod
+  - sed -i "s/commit_hash = ''/commit_hash = '${CI_COMMIT_SHA}'/" $DIST_DIR/index.html
+  - sed -i "s/build_date = ''/build_date = '$(date)'/" $DIST_DIR/index.html
+  artifacts:
+    expire_in: 1 day
+    paths:
+    - moments-ui/$DIST_DIR
+  tags:
+  - docker
+  - gce
+
+shots:
+  stage: build
+  image: ng-cli-karma:${CLI_VERSION}
+  script:
+  - mkdir shots
+  - npm i puppeteer-core
+  - node puppeteer-sample.js
+  artifacts:
+    expire_in: 1 day
+    paths:
+    - moments-ui/shots
+  tags:
+  - docker
+  - gce
+
+deploy:
+  stage: deploy
+  image: docker:stable
+  services:
+  - docker:dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay
+  before_script: ['cd moments-ui']
+  script:
+  - docker build -t $IMAGE .
+  - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+  - docker push $IMAGE
+  - IMAGE_ID=$(docker inspect ${IMAGE} --format={{.Id}})
+  - 'echo deploying: ..${IMAGE_ID}.. for ..${IMAGE}..'
+  - apk add curl
+  - >
+      curl -Ssl -X PATCH https://api.heroku.com/apps/moments-ui/formation
+      -d "{
+      \"updates\": [
+      {
+        \"type\": \"web\",
+        \"docker_image\": \"${IMAGE_ID}\"
+      }
+      ]
+      }"
+      -H "Content-Type: application/json"
+      -H "Authorization: Bearer ${HEROKU_API_KEY}"
+      -H "Accept: application/vnd.heroku+json; version=3.docker-releases"
+  tags:
+  - docker
+  - gce
