@@ -12,7 +12,7 @@ jobs:
      # build dotnet core 3.1 image
      - run: |
          docker info
-         cd ./moments.api/moments-space/
+         cd ./moments.api/moments.space/
          docker build -t momentsspaceapi .
 
      # deploy the dotnet core image
