@@ -1,5 +1,5 @@
 {
     "dotnet-test-explorer.enableTelemetry": false,
-    "dotnet-test-explorer.testProjectPath": "",
+    "dotnet-test-explorer.testProjectPath": "**/moments.*.tests.csproj",
     "dotnet-test-explorer.pathForResultFile":"D:/Rajesh/myLab/moments/testresults"
 }
