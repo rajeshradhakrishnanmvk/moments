@@ -8,7 +8,7 @@ using moments.user.api.Service;
 using moments.user.api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UserService.Test
+namespace moments.user.tests
 {
     public class UserControllerTest
     {

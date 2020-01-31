@@ -5,7 +5,7 @@ using moments.category.api.Models;
 using moments.category.api.Repository;
 using Xunit;
 
-namespace CategoryService.Test
+namespace moments.category.tests
 {
     public class CategoryRepositoryTest:IClassFixture<DatabaseFixture>
     {

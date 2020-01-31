@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using moments.user.api.Models;
 
-namespace UserService.Test
+namespace moments.user.tests
 {
     public class DatabaseFixture:IDisposable
     {

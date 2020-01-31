@@ -8,7 +8,7 @@ using moments.category.api.Models;
 using moments.category.api.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CategoryService.Test
+namespace moments.category.tests
 {
     public class CategoryControllerTest
     {

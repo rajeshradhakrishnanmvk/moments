@@ -8,7 +8,7 @@ using moments.user.api.Repository;
 using Xunit;
 using API = moments.user.api;
 
-namespace UserService.Test
+namespace moments.user.tests
 {
     public class UserServiceTest
     {

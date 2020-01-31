@@ -7,7 +7,7 @@ using moments.category.api.Repository;
 using moments.category.api.Exceptions;
 using MongoDB.Driver;
 
-namespace CategoryService.Test
+namespace moments.category.tests
 {
     public class CategoryServiceTest
     {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CategoryService.Test
+namespace moments.category.tests
 {
     public class DatabaseFixture : IDisposable
     {
