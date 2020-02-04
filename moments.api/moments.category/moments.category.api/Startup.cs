@@ -57,7 +57,14 @@ namespace moments.category.api
             }
 
             app.UseHttpsRedirection();
-            // Enable middleware to serve generated Swagger as a JSON endpoint.
+
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+           app.UseCors(
+                       options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+                       );
+                                   // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
@@ -66,10 +73,6 @@ namespace moments.category.api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authentication Service API V1");
             });
-            app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -89,7 +89,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "moments.gateway-build",
-            "program": "${workspaceFolder}/moments.api/moments.gateway/bin/Debug/netcoreapp3.1/moments.gateway.api.dll",
+            "program": "${workspaceFolder}/moments.api/moments.gateway/bin/Debug/netcoreapp3.1/moments.gateway.dll",
             "args": [],
             "cwd": "${workspaceFolder}/moments.api/moments.gateway",
             "stopAtEntry": false,

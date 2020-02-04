@@ -22,16 +22,16 @@ namespace moments.category.api.Controllers
         }
         // GET: api/<controller>
         [HttpGet("{id}")]
-        public IActionResult Get(int categoryId)
+        public IActionResult Get(int id)
         {
-            return Ok(service.GetCategoryById(categoryId));
+            return Ok(service.GetCategoryById(id));
         }
 
         // GET api/<controller>/5
         [HttpGet("user/{id}")]
-        public IActionResult Get(string userId)
+        public IActionResult Get(string id)
         {
-            return Ok(service.GetAllCategoriesByUserId(userId));
+            return Ok(service.GetAllCategoriesByUserId(id));
         }
 
         // POST api/<controller>
