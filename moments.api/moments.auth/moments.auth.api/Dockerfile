@@ -1,8 +1,12 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS base
+RUN apt update && \
+    apt-get install -y procps \ 
+    apt install unzip \
+    curl -sSL https://aka.ms.getvsdbgsh | /bin/sh /dev/stdin -v latest -l /vsdbg
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/dotnet:2.1-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 WORKDIR /src
 COPY ["moments.auth.api.csproj", "./"]
 RUN dotnet restore "moments.auth.api.csproj"

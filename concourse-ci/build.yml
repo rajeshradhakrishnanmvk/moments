@@ -1,0 +1,83 @@
+resources:
+  - name: moments-source-code
+    type: git
+    source:
+      uri: ((GITLAB_SOURCE_REPO))
+      branch: ((GITLAB_SOURCE_BRANCH))
+      private_key: ((GITLAB_PRIVATE_KEY))
+  - name: moments-on-kuberentes
+    type: kbctrl
+    source:
+      api: ((CF_API))
+      skip_cert_check:false
+      username: ((CF_USER))
+      password: ((CF_PASS))
+      organization: ((CF_ORG))
+      space: ((CF_SPACE))
+jobs:
+- name: jobs-moments-tests
+  plan:
+  - get: moments-source-code
+    trigger: true
+  - task: run-tests
+    config:
+      platform: linux
+      inputs:
+        - name: moments-source-code
+      image_resource:
+        type: docker-image
+        source:
+            repository: dockerlocalregistry:5000/raj_dotnetjava
+            tag:latest
+            insecure_registries: ["dockerlocalregistry:5000"]
+      run:
+        path: sh
+        args: 
+        - -exc
+        - |
+            cd ./moments-source-code
+            dotnet restore -s "https://artifactory.platform.company.io/artifactory/api/nuget/nuget"
+            dotnet test moments.sln
+- name: sonarscan
+  plan:
+  - get: moments-source-code
+    trigger: true
+    passed: [job-moments-tests]
+  - task: run-scan
+    config:
+      platform: linux
+      inputs:
+        - name: moments-source-code
+      image_resource:
+        type: docker-image
+        source:
+            repository: dockerlocalregistry:5000/raj_dotnetjava
+            tag:latest
+            insecure_registries: ["dockerlocalregistry:5000"]
+      run:
+        path: sh
+        args: 
+        - -exc
+        - |
+            cd ./moments-source-code
+            dotnet tool install --global dotnet--sonarscanner
+            dotnet tool install --global coverlet.console --version 1.4.1
+            cat << \EOF >> ~/.bash_profile
+            # Add .NET Core SDK tools
+            export PATH="$PATH:/root/.dotnet/tools"
+            EOF
+            export PATH="$PATH:/root/.dotnet/tools"
+            dotnet restore -s "https://artifactory.platform.company.io/artifactory/api/nuget/nuget"
+            dotnet test moments.space.test.csproj /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+            dotnet sonarscanner begin /k:"Moments-Local" /d:sonar.host.url=((sonarqube_host.url)) /d:sonar.login=((sonarqube_login)) /d:sonar.password=((sonarqube_pass)) /d:sonar.cs.opencover.reportsPaths="moments.space.test\coverage.opencover.xml" /d:sonar.coverage.exclusions="**tests*.cs"
+            dotnet build moments.sln
+            dotnet sonarscanner end /d:sonar.login=((sonarqube_login)) /d:sonar.password=((sonarqube_pass))
+- name: deploy-to-Local
+  plan:
+    - get: moments-source-code
+      trigger: true
+      passed: [sonarqube]
+    - put: moments-on-kuberentes
+      params:
+        manifest: moments-source-code.manifest.development.yml
+

@@ -5,13 +5,93 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (web)",
+            "name": "moments.auth",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "dotnet-build",
+            "preLaunchTask": "moments.auth-build",
+            "program": "${workspaceFolder}/moments.api/moments.auth/moments.auth.api/bin/Debug/netcoreapp3.1/moments.auth.api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/moments.api/moments.auth/moments.auth.api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "moments.category",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "moments.category-build",
+            "program": "${workspaceFolder}/moments.api/moments.category/moments.category.api/bin/Debug/netcoreapp3.1/moments.category.api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/moments.api/moments.category/moments.category.api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "moments.space",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "moments.space-build",
             "program": "${workspaceFolder}/moments.api/moments.space/moments.space.api/bin/Debug/netcoreapp3.1/moments.space.api.dll",
             "args": [],
             "cwd": "${workspaceFolder}/moments.api/moments.space/moments.space.api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "moments.user",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "moments.user-build",
+            "program": "${workspaceFolder}/moments.api/moments.user/moments.user.api/bin/Debug/netcoreapp3.1/moments.user.api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/moments.api/moments.user/moments.user.api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "moments.gateway",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "moments.gateway-build",
+            "program": "${workspaceFolder}/moments.api/moments.gateway/bin/Debug/netcoreapp3.1/moments.gateway.api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/moments.api/moments.gateway",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
@@ -36,6 +116,22 @@
             "name": "Launch Chrome",
             "url": "http://localhost:4201",
             "webRoot": "${workspaceFolder}/moments-ui"
+          }
+          ],
+          "compounds": [{
+              "name": "Moments FSE",
+              "configurations": [
+                  "moments.auth",
+                  "moments.space",
+                  "moments.category",
+                  "moments.user",
+                  "moments.gateway"
+              ],
+              "presentation":{
+                  "group":"1_vscode",
+                  "order": 1
+              }
+
           }
     ]
 }

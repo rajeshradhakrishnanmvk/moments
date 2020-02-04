@@ -4,7 +4,87 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "dotnet-build",
+            "label": "moments.gateway-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.gateway/moments.gateway.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "moments.space-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.space/moments.space.api/moments.space.api.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "moments.user-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.user/moments.user.api/moments.user.api.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "moments.category-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.category/moments.category.api/moments.category.api.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "moments.auth-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.auth/moments.auth.api/moments.auth.api.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "moments.space-build",
             "command": "dotnet",
             "type": "shell",
             "args": [
@@ -35,7 +115,11 @@
         },{
             "label": "moments-build",
             "dependsOn":[
-                "dotnet-build",
+                "moments.auth-build",
+                "moments.user-build",
+                "moments.category-build",
+                "moments.gateway-build",
+                "moments.space-build",
                 "angular-build"
             ],
             "group": "build"

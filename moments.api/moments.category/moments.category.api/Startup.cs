@@ -24,11 +24,10 @@ namespace moments.category.api
 {
     public class Startup
     {
-         private readonly ILogger _logger;
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+  
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _logger = logger;
         }
 
         public IConfiguration Configuration { get; }
@@ -58,7 +57,15 @@ namespace moments.category.api
             }
 
             app.UseHttpsRedirection();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
 
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authentication Service API V1");
+            });
             app.UseRouting();
 
             app.UseAuthorization();

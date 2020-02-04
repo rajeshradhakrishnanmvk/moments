@@ -17,7 +17,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
-            "Port": 55654
+            "Port": 8121
           }
         ],
         "UpstreamPathTemplate": "/api/User",
@@ -30,7 +30,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
-            "Port": 55654
+            "Port": 8121
           }
         ],
         "UpstreamPathTemplate": "/api/User/{id}",
@@ -43,7 +43,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
-            "Port": 29460
+            "Port": 8081
           }
         ],
         "UpstreamPathTemplate": "/api/Register",
@@ -56,7 +56,7 @@
         "DownstreamHostAndPorts": [
           {
             "Host": "localhost",
-            "Port": 29460
+            "Port": 8081
           }
         ],
         "UpstreamPathTemplate": "/api/login",

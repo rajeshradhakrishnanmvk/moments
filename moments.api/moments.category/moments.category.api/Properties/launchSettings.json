@@ -5,7 +5,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:51936",
-      "sslPort": 44332
+      "sslPort": 0
     }
   },
   "profiles": {
@@ -20,8 +20,8 @@
     "moments.category.api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "/swagger",
+      "applicationUrl": "http://localhost:8091",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
