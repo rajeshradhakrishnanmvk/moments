@@ -9,9 +9,9 @@ Project("{de7e0b0a-4cbb-47bd-9161-6d5ed5f69f1a}") = "moments.auth.api", "moments
 EndProject
 Project("{de7e0b0a-4cbb-47bd-9161-6d5ed5f69f1a}") = "moments.auth.tests", "moments.api\moments.auth\moments.auth.tests\moments.auth.tests.csproj", "{6226ed67-847d-4f84-a248-035ae79855c0}"
 EndProject
-Project("{c985a104-066b-4fb4-9529-e6c9765c35f0}") = "moments.auth.api", "moments.api\moments.category\moments.category.api\moments.category.api.csproj", "{f8a71376-b6f0-4f56-8d05-3ca2461d1140}"
+Project("{c985a104-066b-4fb4-9529-e6c9765c35f0}") = "moments.category.api", "moments.api\moments.category\moments.category.api\moments.category.api.csproj", "{f8a71376-b6f0-4f56-8d05-3ca2461d1140}"
 EndProject
-Project("{c985a104-066b-4fb4-9529-e6c9765c35f0}") = "moments.auth.tests", "moments.api\moments.category\moments.category.tests\moments.category.tests.csproj", "{3d23f1cb-fa28-44ab-b310-e19a69e0ba98}"
+Project("{c985a104-066b-4fb4-9529-e6c9765c35f0}") = "moments.category.tests", "moments.api\moments.category\moments.category.tests\moments.category.tests.csproj", "{3d23f1cb-fa28-44ab-b310-e19a69e0ba98}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "moments.space.api", "moments.api\moments.space\moments.space.api\moments.space.api.csproj", "{36FD54B5-9C50-4C40-A556-79A403CD66D7}"
 EndProject
