@@ -1,0 +1,8 @@
+.keep-user-register-form{
+    display: flex;
+    flex-direction: column;
+  }
+  .keep-user-register-wrapper{
+    display: flex;
+    justify-content: flex-end;
+  } 

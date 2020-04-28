@@ -26,6 +26,17 @@ namespace moments.user.api
         {
             Configuration = configuration;
         }
+        // public Startup(IConfiguration configuration, IWebHostEnvironment env)  
+        // {  
+        //     var builder = new ConfigurationBuilder()  
+        //       .SetBasePath(env.ContentRootPath)  
+        //       .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)  
+        //       .AddJsonFile($"Config/{env.EnvironmentName}.json", optional: false, reloadOnChange: true)  
+        //       .AddEnvironmentVariables();  
+        //     configuration = builder.Build();  
+  
+        //     Configuration = configuration;  
+        // }
 
         public IConfiguration Configuration { get; }
 

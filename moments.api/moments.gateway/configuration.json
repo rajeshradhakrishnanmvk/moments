@@ -1,75 +1,73 @@
 {
-    "ReRoutes": [
-      {
-        "DownstreamPathTemplate": "/api/User/{id}",
-        "DownstreamScheme": "http",
-        "UpstreamPathTemplate": "/api/User/{id}",
-        "UpstreamHttpMethod": [ "Get" ],
-        "ServiceName": "user",
-        "LoadBalancerOptions": {
-          "Type": "LeastConnection"
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/User",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8121
         }
-      },
-      {
-  
-        "DownstreamPathTemplate": "/api/User",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8121
-          }
-        ],
-        "UpstreamPathTemplate": "/api/User",
-        "UpstreamHttpMethod": [ "POST", "Put" ]
-      },
-      {
-  
-        "DownstreamPathTemplate": "/api/User/{id}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8121
-          }
-        ],
-        "UpstreamPathTemplate": "/api/User/{id}",
-        "UpstreamHttpMethod": [ "Delete" ]
-      },
-      {
-  
-        "DownstreamPathTemplate": "/auth/Register",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/api/Register",
-        "UpstreamHttpMethod": [ "POST" ]
-      },
-      {
-  
-        "DownstreamPathTemplate": "/auth/login",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 8081
-          }
-        ],
-        "UpstreamPathTemplate": "/api/login",
-        "UpstreamHttpMethod": [ "POST" ]
+      ],
+      "UpstreamPathTemplate": "/api/User",
+      "UpstreamHttpMethod": [
+        "POST",
+        "PUT"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/User/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8121
+        }
+      ],
+      "UpstreamPathTemplate": "/api/User/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "Delete"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
       }
-    ],
-    "GlobalConfiguration": {
-      "ServiceDiscoveryProvider": {
-        "Host": "localhost",
-        "Port": 8500,
-        "Type": "Consul"
-  
-      }
+    },
+    {
+      "DownstreamPathTemplate": "/auth/Register",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Register",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/auth/login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8081
+        }
+      ],
+      "UpstreamPathTemplate": "/api/login",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
     }
   }
-  
+}

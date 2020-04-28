@@ -5,6 +5,32 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Docker .NET Core Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": ".NET Core Docker Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickRemoteProcess}",
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeArgs": [
+                    "exec",
+                    "-i",
+                    "7e47d0c2d03f"
+                ],
+                "debuggerPath": "/remote_debugger/vsdbg",
+                "pipeCwd": "${workspaceRoot}",
+                "quoteArgs": false
+            }
+        },
+        {
             "name": "moments.auth",
             "type": "coreclr",
             "request": "launch",
@@ -114,24 +140,24 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
-            "url": "http://localhost:4201",
-            "webRoot": "${workspaceFolder}/moments-ui"
-          }
-          ],
-          "compounds": [{
-              "name": "Moments FSE",
-              "configurations": [
-                  "moments.auth",
-                  "moments.space",
-                  "moments.category",
-                  "moments.user",
-                  "moments.gateway"
-              ],
-              "presentation":{
-                  "group":"1_vscode",
-                  "order": 1
-              }
-
-          }
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/moments.ui"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Moments FSE",
+            "configurations": [
+                "moments.auth",
+                "moments.space",
+                "moments.category",
+                "moments.user",
+                "moments.gateway"
+            ],
+            "presentation": {
+                "group": "1_vscode",
+                "order": 1
+            }
+        }
     ]
 }

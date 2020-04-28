@@ -24,7 +24,7 @@ namespace moments.category.api
 {
     public class Startup
     {
-  
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -61,10 +61,10 @@ namespace moments.category.api
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-           app.UseCors(
-                       options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
-                       );
-                                   // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseCors(
+                        options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+                        );
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
@@ -79,7 +79,7 @@ namespace moments.category.api
             });
         }
 
-         private void ValidateToken(IConfiguration configuration, IServiceCollection services)
+        private void ValidateToken(IConfiguration configuration, IServiceCollection services)
         {
             var audienceconfig = configuration.GetSection("Audience");
             var key = audienceconfig["key"];

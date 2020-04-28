@@ -1,4 +1,8 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:3.1 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+RUN apt update && \
+    apt-get install -y procps \ 
+    apt install unzip \
+    curl -ssl https://aka.ms.getvsdbgsh | /bin/sh /dev/stdin -v latest -l /vsdbg
 WORKDIR /app
 EXPOSE 80
 

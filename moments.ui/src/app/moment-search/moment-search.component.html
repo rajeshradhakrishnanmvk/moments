@@ -1,6 +1,6 @@
 <h3>Search Moments from NASA</h3>
 <p><i>Searches when typing stops. Caches for 30 seconds.</i></p>
-<input (keyup)="search($event.target.value)" id="name" placeholder="Search"/>
+<input (keyup)="search($event.target.value)" id="name" placeholder="Search" />
 <input type="checkbox" id="refresh" [checked]="withRefresh" (click)="toggleRefresh()">
 <label for="refresh">with refresh</label>
 
@@ -8,20 +8,22 @@
   <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{moment.nasa_id}}</mat-card-title>
+      <mat-card-title>{{moment.nasaid}}</mat-card-title>
       <mat-card-subtitle>{{moment.title}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src={{moment.href}} alt="{{moment.nasa_id}}">
+    <img mat-card-image src={{moment.href}} alt="{{moment.nasaId}}">
     <mat-card-content>
       <p>
         {{moment.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>ADD</button>
+      <mat-select name="editCategory" placeholder="Select category" [(ngModel)]="moment.category">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+      <button mat-button (click)="add(moment)">ADD</button>
     </mat-card-actions>
   </mat-card>
 </div>
-
-
-

@@ -1,0 +1,26 @@
+<!-- Label to display any error messages -->
+<label class="error-message">{{ errMessage }}</label>
+
+<div class="keep-user-register-form">
+<mat-form-field> 
+  <input [(ngModel)]="userprofile.userid" name="editUserId" matInput placeholder="User Id" type="text">
+</mat-form-field>
+<mat-form-field>
+  <input [(ngModel)]="userprofile.password" name="editPassword" matInput placeholder="Password"  type="text">
+</mat-form-field>
+<mat-form-field> 
+  <input [(ngModel)]="userprofile.firstname" name="editFirstName" matInput placeholder="First Name" type="text">
+</mat-form-field>
+<mat-form-field>
+  <input [(ngModel)]="userprofile.lastname" name="editLastName" matInput placeholder="Last name"  type="text">
+</mat-form-field>
+<mat-form-field>
+  <input [(ngModel)]="userprofile.role" name="editRole" matInput placeholder="Role"  type="text">
+</mat-form-field>
+<mat-form-field>
+  <input [(ngModel)]="userprofile.contact" name="editContact" matInput placeholder="Contact"  type="text">
+</mat-form-field>
+</div>
+<div class="keep-user-register-wrapper">
+  <button mat-button (click)="onSave()">Save</button>
+</div>

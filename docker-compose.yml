@@ -5,35 +5,34 @@ services:
         image: momentsui
         container_name: momentsui01
         build:
-          context: .
-          dockerfile: moments.ui\Dockerfile
+          context: ./moments.ui
+          dockerfile: Dockerfile
         ports:
             - "4200:80"
         environment: 
             - ASPNETCORE_ENVIRONMENT=Docker
         volumes:
-            -./vsdbg:/vsdbg
+            - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
         depends_on: 
             - web1
             - web2
+            - web3
             - web4
             - web5
     web1:
         image: momentsauthservice
         container_name: momentsauthservice01
         build:
-          context: .
-          dockerfile: moments.api\moments.auth\moments.auth.api\Dockerfile
-        environment:
-            - ASPNETCORE_ENVIRONMENT=Development
-            - NOTEDB=server=mssql;database=MomentsDB;User Id=sa;Password=1Secure*Password1;
+          context: ./moments.api/moments.auth/moments.auth.api
+          dockerfile: Dockerfile
         ports:
             - "8081:80"
-        environment: 
+        environment:
             - ASPNETCORE_ENVIRONMENT=Docker
+            - MomentsDB=server=mssql;database=MomentsDB;User Id=sa;Password=1Secure*Password1;
         volumes:
-            -./vsdbg:/vsdbg
+            - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
         depends_on: 
             - mssql
@@ -41,56 +40,61 @@ services:
         image: categoryservice
         container_name: categoryservice01
         build:
-          context: .
-          dockerfile: moments.api\moments.category\moments.category.api\Dockerfile
+          context: ./moments.api/moments.category/moments.category.api
+          dockerfile: Dockerfile
         ports:
             - "8091:80"
-        environment: 
-            - ASPNETCORE_ENVIRONMENT=Docker
         volumes:
-            -./vsdbg:/vsdbg
+            - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
         depends_on: 
             - db
         environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Docker
             - Mongo_DB=mongodb://db:27017
-    web4:
+    web3:
         image: momentsservice
         container_name: momentsservice01
         build:
-          context: .
-          dockerfile: moments.api\moments.space\moments.space.api\Dockerfile
+          context: ./moments.api/moments.space/moments.space.api
+          dockerfile: Dockerfile
         ports:
             - "8131:80"
-        environment: 
-            - ASPNETCORE_ENVIRONMENT=Docker
         volumes:
-            -./vsdbg:/vsdbg
+            - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
         depends_on: 
             - db
         environment:
-            - ASPNETCORE_ENVIRONMENT=Production
+            - ASPNETCORE_ENVIRONMENT=Docker
             - Mongo_DB=mongodb://db:27017
-    web5:
+    web4:
         image: userservice
         container_name: userservice01
         build:
-          context: .
-          dockerfile: moments.api\moments.user\moments.user.api\Dockerfile
+          context: ./moments.api/moments.user/moments.user.api
+          dockerfile: Dockerfile
         ports:
             - "8121:80"
-        environment: 
-            - ASPNETCORE_ENVIRONMENT=Docker
         volumes:
-            -./vsdbg:/vsdbg
+            - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
         depends_on: 
             - db
         environment:
-            - ASPNETCORE_ENVIRONMENT=Development
+            - ASPNETCORE_ENVIRONMENT=Docker
             - Mongo_DB=mongodb://db:27017
+    web5:
+        image: momentsgateway
+        container_name: momentsmomentsgateway01
+        build:
+            context: ./moments.api/moments.gateway
+            dockerfile: Dockerfile
+        ports:
+            - "8500:80"
+        volumes:
+            - ./vsdbg:/remote_debugger/vsdbg
+        restart: on-failure
     db:
         image: "mongo"
         ports:

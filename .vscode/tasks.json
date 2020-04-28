@@ -112,7 +112,15 @@
             "group": "build",
             "isBackground": true,
             "problemMatcher": "$tsc"
-        },{
+        },
+        {
+            "label": "angular-serve",
+            "type": "npm",
+            "script": "serve --env=local",
+            "problemMatcher": []
+            
+        }
+        ,{
             "label": "moments-build",
             "dependsOn":[
                 "moments.auth-build",

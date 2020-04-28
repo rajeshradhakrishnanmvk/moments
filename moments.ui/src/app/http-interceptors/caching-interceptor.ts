@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 import { startWith, tap } from 'rxjs/operators';
 
 import { RequestCache } from '../request-cache.service';
-import { searchUrl } from '../moment-search/moment-search.service';
+import { searchUrl } from '../services/moment-search.service';
 
 
 /**
@@ -23,7 +23,7 @@ import { searchUrl } from '../moment-search/moment-search.service';
  */
 @Injectable()
 export class CachingInterceptor implements HttpInterceptor {
-  constructor(private cache: RequestCache) {}
+  constructor(private cache: RequestCache) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     // continue if not cachable.
@@ -34,7 +34,7 @@ export class CachingInterceptor implements HttpInterceptor {
     if (req.headers.get('x-refresh')) {
       const results$ = sendRequest(req, next, this.cache);
       return cachedResponse ?
-        results$.pipe( startWith(cachedResponse) ) :
+        results$.pipe(startWith(cachedResponse)) :
         results$;
     }
     // cache-or-fetch

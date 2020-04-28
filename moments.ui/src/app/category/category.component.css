@@ -1,0 +1,8 @@
+.keep-category-form{
+    display: flex;
+    flex-direction: column;
+  }
+  .keep-category-wrapper{
+    display: flex;
+    justify-content: flex-end;
+  } 

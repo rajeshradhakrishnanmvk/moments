@@ -1,0 +1,18 @@
+<form [formGroup]="frmLogin" (submit)="loginSubmit()" class="login-c-form-wrapper">
+    <div class="divcls">
+    <label for="username">UserName</label>
+    <input class="userid" matInput [formControl]='userid'> 
+    </div>
+    <div class="divcls">
+    <label for="password">Password</label>
+    <input class="password" matInput type = 'password' [formControl]='password'> 
+  
+    </div>
+    <div class="divcls">
+    <button type="submit" [disabled]="!frmLogin.valid">Submit</button>
+    <strong *ngIf="submitMessage" class="error-message">{{submitMessage}}</strong>
+    </div>
+</form>
+<router-outlet name="userEditOutlet"></router-outlet>
+
+  

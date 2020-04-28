@@ -1,2 +1,0 @@
-docker build -t moments-ui .
-docker run --name moments-ui-container -d -p 8888:80 moments-ui

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AuthService {
   getAuthorizationToken() {
-    return 'some-auth-token';
+    return localStorage.getItem("JWT_TOKEN");
   }
 }
 

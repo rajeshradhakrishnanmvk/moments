@@ -6,3 +6,15 @@
   background-image: url('https://images-assets.nasa.gov/image/PIA01492/PIA01492~orig.jpg');
   background-size: cover;
 }
+#leftbox { 
+  float:left;  
+  background:Red; 
+  width:25%; 
+  height:280px; 
+} 
+#rightbox{ 
+  float:right; 
+  background:blue; 
+  width:25%; 
+  height:280px; 
+}

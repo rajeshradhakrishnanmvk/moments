@@ -13,7 +13,7 @@ namespace moments.space.tests
         [Fact]
         public void CreateMomentShouldReturnMomentUser()
         {
-            var moment = new MomentUser {UserId="Rajesh", Moments=this.GetMoments() };
+            var moment = new MomentUser { UserId = "Rajesh", Moments = this.GetMoments() };
             var mockRepo = new Mock<IMomentRepository>();
             mockRepo.Setup(repo => repo.CreateMoment(moment)).Returns(moment);
             var service = new API.Service.MomentService(mockRepo.Object);
@@ -27,14 +27,14 @@ namespace moments.space.tests
         public void AddMomentShouldReturnMomentUser()
         {
             var moment = this.GetMoment();
-            var momentUser = new MomentUser {UserId="Rajesh", Moments=this.GetMoments() };
+            var momentUser = new MomentUser { UserId = "Rajesh", Moments = this.GetMoments() };
             int momentId = 101;
             string userId = "Rajesh";
             var mockRepo = new Mock<IMomentRepository>();
-            mockRepo.Setup(repo => repo.UpdateMoment(momentId, userId,moment)).Returns(momentUser);
+            mockRepo.Setup(repo => repo.UpdateMoment(momentId, userId, moment)).Returns(momentUser);
             var service = new API.Service.MomentService(mockRepo.Object);
 
-            var actual = service.AddMoment(userId,moment);
+            var actual = service.AddMoment(userId, moment);
             Assert.NotNull(actual);
             Assert.IsAssignableFrom<MomentUser>(actual);
         }
@@ -50,7 +50,7 @@ namespace moments.space.tests
             Moment moment = new Moment();
             moment.Id = 101;
             moment.Title = "IPL 2018";
-            moment.Descirption = "Mumbai Indians vs RCB match scheduled  for 4 PM is cancelled";
+            moment.Description = "Mumbai Indians vs RCB match scheduled  for 4 PM is cancelled";
             moment.Category = this.GetCategory();
             moment.CreatedBy = "Rajesh";
             moment.CreationDate = new DateTime();
@@ -59,7 +59,7 @@ namespace moments.space.tests
             mockRepo.Setup(repo => repo.UpdateMoment(momentId, userId, moment)).Returns(momentUser);
             var service = new API.Service.MomentService(mockRepo.Object);
 
-            var actual = service.UpdateMoment(momentId,userId, moment);
+            var actual = service.UpdateMoment(momentId, userId, moment);
             Assert.NotNull(actual);
             Assert.IsAssignableFrom<MomentUser>(actual);
         }
@@ -100,7 +100,7 @@ namespace moments.space.tests
             mockRepo.Setup(repo => repo.FindByUserId(userId)).Returns(this.GetMoments());
             var service = new API.Service.MomentService(mockRepo.Object);
 
-            var actual = service.GetMoment(userId, momentId); 
+            var actual = service.GetMoment(userId, momentId);
         }
 
         private Category GetCategory()
@@ -121,7 +121,7 @@ namespace moments.space.tests
             Moment moment = new Moment();
             moment.Id = 101;
             moment.Title = "IPL 2018";
-            moment.Descirption = "Mumbai Indians vs RCB match scheduled  for 4 PM";
+            moment.Description = "Mumbai Indians vs RCB match scheduled  for 4 PM";
             moment.Category = this.GetCategory();
             moment.CreatedBy = "Rajesh";
             moment.CreationDate = new DateTime();

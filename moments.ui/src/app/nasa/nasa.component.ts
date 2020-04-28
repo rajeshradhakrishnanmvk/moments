@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Moment } from '../moment';
-import { NasaService } from './services/nasa.service';
+import { NasaService } from '../services/nasa.service';
 
 @Component({
   selector: 'app-nasa',
@@ -10,10 +10,11 @@ import { NasaService } from './services/nasa.service';
   styleUrls: ['./nasa.component.css']
 })
 export class NasaComponent implements OnInit {
+  @Input() moment: Moment;
   moments: Moment[];
   editMoment: Moment; // the moment currently being edited
 
-  constructor(private momentsService: NasaService) {}
+  constructor(private momentsService: NasaService) { }
 
   ngOnInit() {
     this.getMoments();
@@ -24,55 +25,36 @@ export class NasaComponent implements OnInit {
       .subscribe(moments => (this.moments = moments));
   }
 
-  add(nasa_id: string): void {
+  add(nasaId: string): void {
     this.editMoment = undefined;
-    nasa_id = nasa_id.trim();
-    if (!nasa_id) {
+    nasaId = nasaId.trim();
+    if (!nasaId) {
       return;
     }
 
     // The server will generate the id for this new moment
-    const newMoment: Moment = { nasa_id } as Moment;
+    const newMoment: Moment = { nasaId } as Moment;
     this.momentsService
       .addMoment(newMoment)
       .subscribe(moment => this.moments.push(moment));
   }
 
-  delete(moment: Moment): void {
-    this.moments = this.moments.filter(h => h !== moment);
-    this.momentsService
-      .deleteMoment(moment.id)
-      .subscribe();
-    /*
-    // oops ... subscribe() is missing so nothing happens
-    this.momentsService.deleteMoment(moment.id);
-    */
-  }
 
   edit(moment: Moment) {
     this.editMoment = moment;
   }
 
-  search(searchTerm: string) {
-    this.editMoment = undefined;
-    if (searchTerm) {
-      this.momentsService
-        .searchMoments(searchTerm)
-        .subscribe(moments => (this.moments = moments));
-    }
-  }
-
   update() {
     if (this.editMoment) {
       this.momentsService
-        .updateMoment(this.editMoment)
+        .editMoment(this.editMoment)
         .subscribe(moment => {
-        // replace the moment in the moments list with update from server
-        const ix = moment ? this.moments.findIndex(h => h.id === moment.id) : -1;
-        if (ix > -1) {
-          this.moments[ix] = moment;
-        }
-      });
+          // replace the moment in the moments list with update from server
+          const ix = moment ? this.moments.findIndex(h => h.id === moment.id) : -1;
+          if (ix > -1) {
+            this.moments[ix] = moment;
+          }
+        });
       this.editMoment = undefined;
     }
   }
