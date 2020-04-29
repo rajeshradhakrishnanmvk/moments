@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@moments-space
+    - uses: actions/checkout@v1
     - name: Login to Heroku Container registry
       env: 
         working-directory: ./moments.api/moments.auth/moments.auth.api
