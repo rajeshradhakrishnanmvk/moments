@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace moments.space.api.Models
 {
-    public class MomentContext:IMomentContext
+    public class MomentContext : IMomentContext
     {
         private readonly IMongoDatabase database;
         MongoClient client;
@@ -12,8 +12,6 @@ namespace moments.space.api.Models
         public MomentContext(IConfiguration configuration)
         {
             client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
-            //client = new MongoClient(Environment.GetEnvironmentVariable("Mongo_DB"));
-            //client = new MongoClient(configuration.GetSection("MongoDB:CloudConnctionString").Value);
             database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
         }
 

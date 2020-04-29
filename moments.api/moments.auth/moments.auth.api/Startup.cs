@@ -34,8 +34,7 @@ namespace moments.auth.api
         {
             services.AddControllers();
             services.AddCors();
-            //string conn = Environment.GetEnvironmentVariable("MomentDB");
-            string conn = Configuration.GetConnectionString("DockerMomentDB");
+            string conn = Environment.GetEnvironmentVariable("MomentDB");
             services.AddDbContext<AuthenticationContext>(options =>
             {
                 options.UseSqlServer(conn);
@@ -73,7 +72,7 @@ namespace moments.auth.api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authentication Service API V1");
             });
-            
+
             app.UseRouting();
 
             app.UseAuthorization();
