@@ -1,41 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/User",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8121
-        }
-      ],
-      "UpstreamPathTemplate": "/api/User",
-      "UpstreamHttpMethod": [
-        "POST",
-        "PUT"
-      ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/User/{id}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 8121
-        }
-      ],
-      "UpstreamPathTemplate": "/api/User/{id}",
-      "UpstreamHttpMethod": [
-        "GET",
-        "Delete"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "TestKey",
-        "AllowedScopes": []
-      }
-    },
-    {
-      "DownstreamPathTemplate": "/auth/Register",
+      "DownstreamPathTemplate": "/auth/{catchAll}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -43,22 +9,7 @@
           "Port": 443
         }
       ],
-      "UpstreamPathTemplate": "/api/Register",
-      "UpstreamHttpMethod": [
-        "POST"
-      ]
-    },
-    {
-      "DownstreamPathTemplate": "/auth/login",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "moments-auth.herokuapp.com"
-        }
-      ],
-      "UpstreamPathTemplate": "/api/login",
-      "UpstreamHttpMethod": [
-        "POST"
-      ]
+      "UpstreamPathTemplate": "/api/{catchAll}"
     }
   ],
   "GlobalConfiguration": {
