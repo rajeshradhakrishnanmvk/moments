@@ -1,7 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/auth/login",
+      "DownstreamPathTemplate": "/subdomain/auth/login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
