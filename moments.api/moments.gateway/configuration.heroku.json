@@ -50,7 +50,6 @@
     },
     {
       "DownstreamPathTemplate": "/auth/login",
-      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-auth.herokuapp.com"
