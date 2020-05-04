@@ -58,6 +58,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/login",
+      "UpstreamScheme": "https",
       "UpstreamHttpMethod": [
         "POST"
       ]
