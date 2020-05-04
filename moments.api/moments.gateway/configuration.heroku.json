@@ -53,8 +53,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "moments-auth.herokuapp.com",
-          "Port": 443
+          "Host": "moments-auth.herokuapp.com"
         }
       ],
       "UpstreamPathTemplate": "/api/login",
