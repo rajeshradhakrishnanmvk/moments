@@ -15,4 +15,4 @@ RUN dotnet publish "moments.gateway.csproj" -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "moments.gateway.dll"]
+ENTRYPOINT ["dotnet", "moments.gateway.dll","--environment=heroku"]
