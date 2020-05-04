@@ -20,8 +20,8 @@ namespace moments.gateway
         {
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(env.ContentRootPath)
-                .AddJsonFile("configuration.{env.EnvironmentName}.json", optional: false
-                , reloadOnChange: true)
+                // .AddJsonFile("configuration.{env.EnvironmentName}.json", optional: false
+                // , reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();

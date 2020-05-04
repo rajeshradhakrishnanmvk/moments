@@ -24,7 +24,16 @@ namespace moments.gateway
                     .UseKestrel(options =>
                         {
                             options.ListenAnyIP(Int32.Parse(System.Environment.GetEnvironmentVariable("PORT")));
-                        });
+                        })
+                    .ConfigureAppConfiguration((context, config) =>
+                    {
+                        config
+                            .SetBasePath(context.HostingEnvironment.ContentRootPath)
+                            .AddJsonFile("appsettings.json", true, true)
+                            .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true)
+                            .AddJsonFile("ocelot.json")
+                            .AddEnvironmentVariables();
+                    });
                 });
     }
 }
