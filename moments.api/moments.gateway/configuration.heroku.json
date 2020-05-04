@@ -65,8 +65,8 @@
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
-      "Port": 8500,
+      "Host": "moments-gateway.herokuapp.com",
+      "Port": 443,
       "Type": "Consul"
     }
   }
