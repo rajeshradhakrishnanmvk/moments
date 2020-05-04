@@ -50,15 +50,12 @@
     },
     {
       "DownstreamPathTemplate": "/auth/login",
-      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "moments-auth.herokuapp.com",
-          "Port": 443
+          "Host": "moments-auth.herokuapp.com"
         }
       ],
       "UpstreamPathTemplate": "/api/login",
-      "UpstreamScheme": "https",
       "UpstreamHttpMethod": [
         "POST"
       ]
@@ -67,7 +64,6 @@
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
       "Host": "moments-gateway.herokuapp.com",
-      "Port": 443,
       "Type": "Consul"
     }
   }
