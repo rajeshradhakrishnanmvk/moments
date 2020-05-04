@@ -29,9 +29,9 @@ namespace moments.gateway
                     {
                         config
                             .SetBasePath(context.HostingEnvironment.ContentRootPath)
-                            .AddJsonFile("appsettings.json", true, true)
-                            .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true)
-                            .AddJsonFile("ocelot.json")
+                            .AddJsonFile("configuration.json", true, true)
+                            .AddJsonFile($"configuration.{context.HostingEnvironment.EnvironmentName}.json", true, true)
+                            .AddJsonFile("configuration.json")
                             .AddEnvironmentVariables();
                     });
                 });
