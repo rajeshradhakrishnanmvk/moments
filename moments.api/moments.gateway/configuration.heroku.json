@@ -64,9 +64,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "ServiceDiscoveryProvider": {
-      "Host": "localhost",
-      "Type": "Consul"
-    }
+    "BaseUrl": "http://localhost"
   }
 }
