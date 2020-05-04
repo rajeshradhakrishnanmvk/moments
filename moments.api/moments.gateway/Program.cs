@@ -29,8 +29,8 @@ namespace moments.gateway
                     {
                         config
                             .SetBasePath(context.HostingEnvironment.ContentRootPath)
-                            //.AddJsonFile("configuration.json", true, true)
-                            .AddJsonFile($"configuration.{context.HostingEnvironment.EnvironmentName}.json", true, true)
+                            .AddJsonFile("configuration.heroku.json", true, true)
+                            //.AddJsonFile($"configuration.{context.HostingEnvironment.EnvironmentName}.json", true, true)
                             //.AddJsonFile("configuration.json")
                             .AddEnvironmentVariables();
                     });
