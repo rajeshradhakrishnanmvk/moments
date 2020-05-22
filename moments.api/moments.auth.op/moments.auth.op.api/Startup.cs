@@ -34,7 +34,7 @@ namespace moments.auth.op.api
         {
             services.AddControllers();
             services.AddCors();
-            string conn = Environment.GetEnvironmentVariable("CLEARDB_DATABASE_URL");
+            string conn = Environment.GetEnvironmentVariable("MomentDB");
             services.AddDbContext<AuthenticationContext>(options =>
             {
                 options.UseMySQL(conn);
