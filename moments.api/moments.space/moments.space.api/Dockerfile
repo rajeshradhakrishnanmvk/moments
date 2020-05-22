@@ -15,4 +15,4 @@ RUN dotnet publish "moments.space.api.csproj" -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "moments.space.api.dll"]
+ENTRYPOINT ["dotnet", "moments.space.api.dll", "--environment=heroku"]

@@ -15,8 +15,8 @@ namespace moments.category.api.Models
 
         public CategoryContext(IConfiguration configuration)
         {
-            //client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
-            client = new MongoClient(Environment.GetEnvironmentVariable("MONGODB_URI"));
+            client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
+            //client = new MongoClient(Environment.GetEnvironmentVariable("MONGODB_URI"));
             database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
         }
 
