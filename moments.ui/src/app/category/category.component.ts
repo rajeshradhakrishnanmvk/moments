@@ -10,7 +10,7 @@ import { Category } from '../category';
 })
 export class CategoryComponent implements OnInit {
 
-  category: Category;//= new Category();
+  category: Category = new Category();
   errMessage: string;
   constructor(private dialogRef: MatDialogRef<CategoryComponent>, @Inject(MAT_DIALOG_DATA)
   private data: any

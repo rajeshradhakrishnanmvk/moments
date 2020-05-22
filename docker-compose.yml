@@ -20,6 +20,7 @@ services:
             - web3
             - web4
             - web5
+            - web6
     web1:
         image: momentsauthservice
         container_name: momentsauthservice01
@@ -36,6 +37,22 @@ services:
         restart: on-failure
         depends_on: 
             - mssql
+    web6:
+        image: momentsauthopservice
+        container_name: momentsauthopservice01
+        build:
+            context: ./moments.api/moments.auth.op/moments.auth.op.api
+            dockerfile: Dockerfile
+        ports:
+            - "8151:80"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Docker
+            - MomentsDB=server=mssql;database=MomentsDB;User Id=sa;Password=1Secure*Password1;
+        volumes:
+            - ./vsdbg:/remote_debugger/vsdbg
+        restart: on-failure
+        depends_on: 
+            - db1
     web2:
         image: categoryservice
         container_name: categoryservice01
@@ -91,10 +108,21 @@ services:
             context: ./moments.api/moments.gateway
             dockerfile: Dockerfile
         ports:
-            - "8500:80"
+            - "8141:80"
         volumes:
             - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
+    db1:
+        image: "mysql"
+        ports:
+            - "3306:3306"
+        volumes:
+            - dbvol:/var/lib/mysql
+        environment: 
+            MYSQL_RANDOM_ROOT_PASSWORD: Yes
+            MYSQL_DATABASE: momentsdb
+            MYSQL_USER: test
+            MYSQL_PASSWORD: my-secret-pw
     db:
         image: "mongo"
         ports:

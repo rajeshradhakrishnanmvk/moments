@@ -46,7 +46,7 @@ namespace moments.auth.api.Test
             var actual = controller.Login(loginuser);
 
             var actionReult = Assert.IsType<OkObjectResult>(actual);
-            Assert.IsAssignableFrom<User>(actionReult.Value);
+            Assert.IsAssignableFrom<string>(actionReult.Value);
         }
 
 

@@ -11,7 +11,8 @@ namespace moments.space.api.Models
 
         public MomentContext(IConfiguration configuration)
         {
-            client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
+            //client = new MongoClient(configuration.GetSection("MongoDB:ConnectionString").Value);
+            client = new MongoClient(Environment.GetEnvironmentVariable("MONGODB_URI"));
             database = client.GetDatabase(configuration.GetSection("MongoDB:Database").Value);
         }
 

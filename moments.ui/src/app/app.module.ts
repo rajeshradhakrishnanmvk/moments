@@ -35,6 +35,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { NasaService } from './services/nasa.service';
 import { UserprofileService } from './services/userprofile.service';
 import { CategoryService } from './services/category.service';
+import { EditMomentOpenerComponent } from './edit-moment-opener/edit-moment-opener.component';
+import { EditMomentViewComponent } from './edit-moment-view/edit-moment-view.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -66,6 +68,8 @@ import { CategoryService } from './services/category.service';
     MenuListCategoryComponent,
     CategoryViewComponent,
     HeaderComponent,
+    EditMomentViewComponent,
+    EditMomentOpenerComponent
   ],
   providers: [
     AuthService,
@@ -81,7 +85,8 @@ import { CategoryService } from './services/category.service';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    RegisterComponent
+    EditMomentViewComponent
+    , RegisterComponent
     , CategoryComponent
   ]
 })

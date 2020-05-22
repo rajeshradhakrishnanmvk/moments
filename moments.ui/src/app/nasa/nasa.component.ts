@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Moment } from '../moment';
 import { NasaService } from '../services/nasa.service';
+import { RouterService } from '../services/router.service';
 
 @Component({
   selector: 'app-nasa',
@@ -14,7 +15,8 @@ export class NasaComponent implements OnInit {
   moments: Moment[];
   editMoment: Moment; // the moment currently being edited
 
-  constructor(private momentsService: NasaService) { }
+  constructor(private momentsService: NasaService,
+    private routerService: RouterService) { }
 
   ngOnInit() {
     this.getMoments();
@@ -25,23 +27,18 @@ export class NasaComponent implements OnInit {
       .subscribe(moments => (this.moments = moments));
   }
 
-  add(nasaId: string): void {
-    this.editMoment = undefined;
-    nasaId = nasaId.trim();
-    if (!nasaId) {
-      return;
-    }
-
-    // The server will generate the id for this new moment
-    const newMoment: Moment = { nasaId } as Moment;
+  delete(moment: Moment) {
     this.momentsService
-      .addMoment(newMoment)
-      .subscribe(moment => this.moments.push(moment));
+      .deleteMoment(moment)
+      .subscribe(moment => {
+        console.log('Moment is deleted.');
+      });
   }
 
 
   edit(moment: Moment) {
     this.editMoment = moment;
+    this.routerService.routeToEditMomentView(moment.id);
   }
 
   update() {

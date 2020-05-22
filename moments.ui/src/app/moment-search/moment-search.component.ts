@@ -57,10 +57,12 @@ export class MomentSearchComponent implements OnInit {
     if (!nasaMoment.nasaId) {
       return;
     }
-    //nasaMoment.id = 0;// The server will generate the id for this new moment
+    nasaMoment.id = 0;// The server will generate the id for this new moment
     nasaMoment.creationDate = new Date();
     nasaMoment.createdBy = "Front End";
-    this.momentsService.addMoment(nasaMoment);
+    this.momentsService
+      .addMoment(nasaMoment)
+      .subscribe(moment => console.log('Moment create', moment));
   }
 }
 

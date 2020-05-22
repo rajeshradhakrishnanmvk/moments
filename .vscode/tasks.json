@@ -84,6 +84,22 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "moments.auth.op-build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary",
+                "${workspaceFolder}/moments.api/moments.auth.op/moments.auth.op.api/moments.auth.op.api.csproj"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "moments.space-build",
             "command": "dotnet",
             "type": "shell",
@@ -118,12 +134,12 @@
             "type": "npm",
             "script": "serve --env=local",
             "problemMatcher": []
-            
-        }
-        ,{
+        },
+        {
             "label": "moments-build",
-            "dependsOn":[
+            "dependsOn": [
                 "moments.auth-build",
+                "moments.auth.op-build",
                 "moments.user-build",
                 "moments.category-build",
                 "moments.gateway-build",

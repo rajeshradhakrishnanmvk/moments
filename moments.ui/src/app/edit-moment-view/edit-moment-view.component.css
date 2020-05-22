@@ -1,0 +1,8 @@
+.keep-c-moment-taker-form{
+    display: flex;
+    flex-direction: column;
+  }
+  .keep-c-done-wrapper{
+    display: flex;
+    justify-content: flex-end;
+  } 

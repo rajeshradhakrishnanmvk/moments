@@ -9,6 +9,10 @@ Project("{de7e0b0a-4cbb-47bd-9161-6d5ed5f69f1a}") = "moments.auth.api", "moments
 EndProject
 Project("{de7e0b0a-4cbb-47bd-9161-6d5ed5f69f1a}") = "moments.auth.tests", "moments.api\moments.auth\moments.auth.tests\moments.auth.tests.csproj", "{6226ed67-847d-4f84-a248-035ae79855c0}"
 EndProject
+Project("{2bb9f787-78c6-4d9e-b6a3-b1c0012dc940}") = "moments.auth.op.api", "moments.api\moments.auth.op\moments.auth.op.api\moments.auth.op.api.csproj", "{13f7a499-2689-493b-9824-db395a6b2404}"
+EndProject
+Project("{2bb9f787-78c6-4d9e-b6a3-b1c0012dc940") = "moments.auth.op.tests", "moments.api\moments.auth.op\moments.auth.op.tests\moments.auth.op.tests.csproj", "{262dcc68-600d-40e9-8b52-a7d77b6b7e81}"
+EndProject
 Project("{c985a104-066b-4fb4-9529-e6c9765c35f0}") = "moments.category.api", "moments.api\moments.category\moments.category.api\moments.category.api.csproj", "{f8a71376-b6f0-4f56-8d05-3ca2461d1140}"
 EndProject
 Project("{c985a104-066b-4fb4-9529-e6c9765c35f0}") = "moments.category.tests", "moments.api\moments.category\moments.category.tests\moments.category.tests.csproj", "{3d23f1cb-fa28-44ab-b310-e19a69e0ba98}"
@@ -60,6 +64,14 @@ Global
 		{3d23f1cb-fa28-44ab-b310-e19a69e0ba98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3d23f1cb-fa28-44ab-b310-e19a69e0ba98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3d23f1cb-fa28-44ab-b310-e19a69e0ba98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13f7a499-2689-493b-9824-db395a6b2404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13f7a499-2689-493b-9824-db395a6b2404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13f7a499-2689-493b-9824-db395a6b2404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13f7a499-2689-493b-9824-db395a6b2404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262dcc68-600d-40e9-8b52-a7d77b6b7e81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262dcc68-600d-40e9-8b52-a7d77b6b7e81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262dcc68-600d-40e9-8b52-a7d77b6b7e81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262dcc68-600d-40e9-8b52-a7d77b6b7e81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +85,8 @@ Global
 		{a44f293e-662e-49db-947e-0161251e3a32} = {5F396160-70BE-488F-95D3-33647B2F556B}
 		{f8a71376-b6f0-4f56-8d05-3ca2461d1140} = {5F396160-70BE-488F-95D3-33647B2F556B}
 		{3d23f1cb-fa28-44ab-b310-e19a69e0ba98} = {5F396160-70BE-488F-95D3-33647B2F556B}
+		{13f7a499-2689-493b-9824-db395a6b2404} = {5F396160-70BE-488F-95D3-33647B2F556B}
+		{262dcc68-600d-40e9-8b52-a7d77b6b7e81} = {5F396160-70BE-488F-95D3-33647B2F556B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {72CE2257-8A93-46CA-A868-54E61897ABD2}

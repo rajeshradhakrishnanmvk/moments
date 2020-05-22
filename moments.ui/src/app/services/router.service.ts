@@ -15,13 +15,13 @@ export class RouterService {
     this.router.navigate(['login']);
   }
 
-  routeToEditNoteView(noteId) {
+  routeToEditMomentView(momentId) {
     this.router.navigate(
       [
-        'dashboard',
+        'space-moments',
         {
           outlets: {
-            noteEditOutlet: ['note', noteId, 'edit']
+            momentEditOutlet: ['moment', momentId, 'edit']
           }
         }
       ]

@@ -21,7 +21,8 @@ export class CategoryViewComponent implements OnInit {
   ngOnInit() {
     this.nasaService.getMoments().subscribe(
       data => {
-        this.categoryMoments = data.filter(moment => this.categoryId === moment.category.id);
+        //this.categoryMoments = data.filter(moment => moment.category.id === this.categoryId);
+        this.categoryMoments = data;
       },
       error => {
         if (404 === error.status) {
@@ -31,5 +32,6 @@ export class CategoryViewComponent implements OnInit {
         }
       }
     );
+    //this.categoryMoments = this.categoryMoments.filter(moment => moment.category.id == this.categoryId);
   }
 }

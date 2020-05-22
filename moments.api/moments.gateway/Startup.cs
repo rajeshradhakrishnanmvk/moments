@@ -33,7 +33,17 @@ namespace moments.gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            this.ValidateToken(Configuration, services);
+        this.ValidateToken(Configuration, services);
+           services.AddCors(options =>
+                            {
+                                options.AddPolicy("CorsPolicy",
+                                    builder => builder
+                                        .AllowAnyOrigin()
+                                        .AllowAnyMethod()
+                                        .AllowAnyHeader()
+                                        //.AllowCredentials()
+                                        );
+                            });
             services.AddOcelot(Configuration).AddConsul();
             //services.AddControllers();
         }
@@ -45,6 +55,7 @@ namespace moments.gateway
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("CorsPolicy");
             app.UseOcelot().Wait();
             // app.UseHttpsRedirection();
 

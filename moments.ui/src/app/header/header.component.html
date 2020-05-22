@@ -52,6 +52,7 @@
 		<mat-sidenav #sidenav [mode]="side" fixedTopGap="56">
 			<mat-nav-list>
 				<a mat-list-item routerLink="moments">NASA Image Library</a>
+				<a mat-list-item routerLink="space-moments">Space</a>
 				<a mat-list-item routerLink="categorydetails">Categories</a>
 				<app-menu-list-category *ngFor="let category of navCategory" [category]="category">
 				</app-menu-list-category>

@@ -10,7 +10,7 @@ export class UserprofileService {
 
   users: Array<User>;
   usersSubject: BehaviorSubject<Array<User>>;
-  private serviceUrl = environment.userervice;//'http://localhost:8121/api/user/';
+  private serviceUrl = environment.userservice;//'http://localhost:8121/api/user/';
 
   constructor(private http: HttpClient, private auth_Service: AuthenticationService) {
     this.users = [];
@@ -19,7 +19,7 @@ export class UserprofileService {
   fetchUsersFromServer() {
     return this.http.get<Array<User>>(this.serviceUrl)
       .subscribe(users => {
-      this.users = users;
+        this.users = users;
         this.usersSubject.next(this.users);
       });
   }

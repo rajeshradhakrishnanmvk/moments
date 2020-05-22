@@ -8,6 +8,8 @@ import { CategoryDetailsComponent } from './category-details/category-details.co
 import { CategoryViewComponent } from './category-view/category-view.component';
 import { MomentSearchComponent } from './moment-search/moment-search.component';
 import { CanActivateRouteGuard } from './can-activate-route.guard';
+import { NasaComponent } from './nasa/nasa.component';
+import { EditMomentOpenerComponent } from './edit-moment-opener/edit-moment-opener.component';
 
 const routes: Routes = [
   {
@@ -50,6 +52,18 @@ const routes: Routes = [
     path: 'moments',
     component: MomentSearchComponent,
     canActivate: [CanActivateRouteGuard]
+  }
+  ,
+  {
+    path: 'space-moments',
+    component: NasaComponent,
+    canActivate: [CanActivateRouteGuard],
+    children: [
+      {
+        path: 'moment/:momentId/edit',
+        component: EditMomentOpenerComponent, outlet: `momentEditOutlet`
+      }
+    ]
   }
 ];
 

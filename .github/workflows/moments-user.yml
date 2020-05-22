@@ -12,22 +12,22 @@ jobs:
     - uses: actions/checkout@v1
     - name: Login to Heroku Container registry
       env: 
-        working-directory: ./moments.api/moments.auth/moments.auth.api
+        working-directory: ./moments.api/moments.user
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
         cd ${{ env.working-directory }} 
         heroku container:login 
     - name: Build and push
       env:
-        working-directory: ./moments.api/moments.auth/moments.auth.api
+        working-directory: ./moments.api/moments.user
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
         cd ${{ env.working-directory }}
-        heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web 
+        heroku container:push -a ${{ secrets.HEROKU_USER_APP_NAME }} web 
     - name: Release
       env:
-        working-directory: ./moments.api/moments.auth/moments.auth.api
+        working-directory: ./moments.api/moments.user
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run:  |
         cd ${{ env.working-directory }}
-        heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web 
+        heroku container:release -a ${{ secrets.HEROKU_USER_APP_NAME }} web 

@@ -32,7 +32,7 @@ export class NasaService {
     this.fetchMomentsFromServer();
   }
   fetchMomentsFromServer() {
-    return this.http.get<Array<Moment>>(this.serviceUrl + this.auth_Service.getUserId(), this.httpOptions)
+    return this.http.get<Array<Moment>>(this.serviceUrl + '/' + this.auth_Service.getUserId(), this.httpOptions)
       .subscribe(moments => {
         this.moments = moments;
         this.momentsSubject.next(this.moments);
@@ -43,28 +43,30 @@ export class NasaService {
     return this.momentsSubject;
   }
 
-  addMoment(moment: Moment): Observable<Moment> {
-    return this.http.post<Moment>(this.serviceUrl + this.auth_Service.getUserId(), moment, this.httpOptions)
+  addMoment(Moment: Moment): Observable<Moment> {
+    const url = this.serviceUrl + '/' + this.auth_Service.getUserId();
+    return this.http.post<Moment>(url, Moment)
       .pipe(tap(addedMoment => {
         console.log('Added Moment', addedMoment);
         this.fetchMomentsFromServer();
-        //this.moments.push(addedMoment);
-        //this.momentsSubject.next(this.moments);
       }), catchError(
         this.handleError<Moment>(`Unable to add Moments`))
       );
   }
 
   editMoment(moment: Moment): Observable<Moment> {
-    return this.http.put<Moment>(this.serviceUrl + this.auth_Service.getUserId() + `/${moment.id}`, moment, this.httpOptions)
+    return this.http.put<Moment>(this.serviceUrl + '/' + this.auth_Service.getUserId() + `/${moment.id}`, moment, this.httpOptions)
       .pipe(tap(editedMoment => {
         this.fetchMomentsFromServer();
-        // const moment1 = this.moments.find(a_moment => a_moment.id === editedMoment.id);
-        // Object.assign(moment1, editedMoment);
-        // this.momentsSubject.next(this.moments);
       }), catchError(this.handleError<Moment>(`Unable to edit Moments`)));
   }
 
+  deleteMoment(moment: Moment): Observable<Moment> {
+    return this.http.delete<Moment>(this.serviceUrl + '/' + this.auth_Service.getUserId() + `/${moment.id}`)
+      .pipe(tap(deleteMoment => {
+        this.fetchMomentsFromServer();
+      }), catchError(this.handleError<Moment>(`Unable to delete Moments`)));
+  }
   getMomentById(momentId): Moment {
     const moment = this.moments.find(b_moment => b_moment.id === momentId);
     return Object.assign({}, moment);

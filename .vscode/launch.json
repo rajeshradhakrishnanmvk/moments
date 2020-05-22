@@ -45,7 +45,29 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "PORT": "http://localhost:8081"
+                "PORT": "8081"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "moments.auth.op",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "moments.auth.op-build",
+            "program": "${workspaceFolder}/moments.api/moments.auth.op/moments.auth.op.api/bin/Debug/netcoreapp3.1/moments.auth.op.api.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/moments.api/moments.auth.op/moments.auth.op.api",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "PORT": "8151",
+                "MomentDB": "Server=localhost; Database=momentsdb; Uid=test; Pwd=my-secret-pw"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -65,7 +87,8 @@
                 "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "PORT": "8091"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -85,7 +108,8 @@
                 "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "PORT": "8131"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -105,7 +129,8 @@
                 "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "PORT": "8121"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -125,7 +150,8 @@
                 "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "PORT": "8141"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -149,7 +175,8 @@
         {
             "name": "Moments FSE",
             "configurations": [
-                "moments.auth",
+                //"moments.auth",
+                "moments.auth.op",
                 "moments.space",
                 "moments.category",
                 "moments.user",

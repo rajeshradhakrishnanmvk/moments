@@ -24,7 +24,7 @@ export class CategoryService implements OnInit {
   }
   fetchCategoriesFromServer() {
     if (this.auth_Service.getUserId() != null) {
-      const url = this.serviceUrl + 'user/' + this.auth_Service.getUserId();
+      const url = this.serviceUrl + '/user/' + this.auth_Service.getUserId();
       return this.http.get<Category[]>(url)
         .subscribe(categories => {
           this.categories = categories;
@@ -46,14 +46,14 @@ export class CategoryService implements OnInit {
   addCategory(Category: Category): Observable<Category> {
     return this.http.post<Category>(this.serviceUrl, Category)
       .pipe(tap(addedCategory => {
-        console.log('Added Note', addedCategory);
+        console.log('Added Category', addedCategory);
         this.categories.push(addedCategory);
         this.categoriesSubject.next(this.categories);
       }), catchError(this.handleError<Category>(`Unable to add Category`)));
   }
 
   editCategory(category: Category): Observable<Category> {
-    return this.http.put<Category>(this.serviceUrl + `${category.id}`, category)
+    return this.http.put<Category>(this.serviceUrl + '/' + `${category.id}`, category)
       .pipe(tap(editedCategory => {
         const Category1 = this.categories.find(a_category => a_category.id === editedCategory.id);
         Object.assign(Category1, editedCategory);

@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
-  authservice: "http://localhost:8081/auth/",
-  cateservice: "http://localhost:8091/api/category/",
-  momentsservice: "http://localhost:8131/api/moments/",
-  userervice: "http://localhost:8121/api/user/"
+  authservice: "http://localhost:8141/api/",
+  cateservice: "http://localhost:8141/api/category",
+  momentsservice: "http://localhost:8141/api/moments",
+  userservice: "http://localhost:8141/api/user"
 };
 
