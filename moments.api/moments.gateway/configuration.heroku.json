@@ -2,7 +2,7 @@
   "ReRoutes": [
     {
       "DownstreamPathTemplate": "/api/Moments/{userId}/{momentId}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-moments.herokuapp.com",
@@ -21,7 +21,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/Moments/{id}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-moments.herokuapp.com",
@@ -40,7 +40,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/category",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-category.herokuapp.com",
@@ -58,7 +58,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/category/user/{id}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-category.herokuapp.com",
@@ -77,7 +77,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/Category/{id}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-category.herokuapp.com",
@@ -97,7 +97,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/User",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-user.herokuapp.com",
@@ -112,7 +112,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/User/{id}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-user.herokuapp.com",
@@ -131,7 +131,7 @@
     },
     {
       "DownstreamPathTemplate": "/auth/Register",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "moments-auth.herokuapp.com",
