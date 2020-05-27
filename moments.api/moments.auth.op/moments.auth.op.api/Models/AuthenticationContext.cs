@@ -21,6 +21,7 @@ namespace moments.auth.op.api.Models
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.UserId);
+                 entity.Property(e => e.UserId).HasMaxLength(128);
                 entity.Property(e => e.FirstName).IsRequired();
                 entity.Property(e => e.Password).IsRequired();
             });
