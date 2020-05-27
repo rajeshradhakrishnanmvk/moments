@@ -5,7 +5,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "moments-moments.herokuapp.com",
+          "Host": "moments-space.herokuapp.com",
           "Port": 443
         }
       ],
@@ -24,7 +24,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "moments-moments.herokuapp.com",
+          "Host": "moments-space.herokuapp.com",
           "Port": 443
         }
       ],
