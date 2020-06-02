@@ -1,5 +1,3 @@
-version: 2.1
-
 workflows:
   version: 2
   jobs:
@@ -60,6 +58,7 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
 
 workflows:
+  version: 2.1
   main:
     jobs:
       - build:
