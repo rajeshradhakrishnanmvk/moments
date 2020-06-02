@@ -1,7 +1,9 @@
 jobs:
   build:
-    docker:
-      - image: 'node:latest'
+    filters:
+      branches:
+        only:
+          - momentsspace
     steps:
       - checkout
       - sonarcloud/scan
