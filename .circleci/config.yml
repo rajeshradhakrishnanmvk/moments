@@ -54,11 +54,17 @@ orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
 
 workflows:
+  version: 2.1
   main:
     jobs:
       - build:
           context: SonarCloud
-          filters:
-            branches:
-              only:
-                - momentsspace
+workflows:
+  version: 2
+  build-and-deploy:
+      jobs:
+        - build:
+            filters:
+              branches:
+                only:
+                  - momentsspace
