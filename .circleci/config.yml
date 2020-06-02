@@ -1,62 +1,19 @@
 version: 2.1
 
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.1
-  
 jobs:
- build:
+  build:
    filters:
      branches:
        only:
          - momentsspace
    machine: true
    steps:
-     - checkout 
+     - checkout
+      - sonarcloud/scan
 
-     # test
-     - run: |
-         docker-compose -f ./moments.api/moments.space/docker-compose.unittests.yml run --rm unittests
-         
-     # build dotnet core 3.1 image
-     - run: |
-         docker info
-         cd ./moments.api/moments.space/moments.space.api/
-         docker build -t momentsspaceapi .
-     - sonarcloud/scan
-     
-     # deploy the dotnet core image
-     - run: |
-         set -eu -o pipefail
-         echo $HEROKU_API_KEY | docker login --username=$HEROKU_USERNAME --password-stdin registry.heroku.com
-         docker tag momentsspaceapi registry.heroku.com/$HEROKU_APP_NAME/webapi
-         docker push registry.heroku.com/$HEROKU_APP_NAME/webapi
-         docker inspect registry.heroku.com/$HEROKU_APP_NAME/webapi --format={{.Id}} > WEB_DOCKER_IMAGE_ID_FILE
-         export WEB_DOCKER_IMAGE_ID=$(cat WEB_DOCKER_IMAGE_ID_FILE)
-         curl -n -X PATCH https://api.heroku.com/apps/$HEROKU_APP_NAME/formation \
-            -d '{ "updates": [ { "type": "web", "docker_image": "'"$WEB_DOCKER_IMAGE_ID"'" }]}' \
-          -H "Content-Type: application/json" \
-          -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
-          -H "Authorization: Bearer $HEROKU_API_KEY"
-     
-     # build Angular image
-     - run: |
-         docker info
-         cd ./moments.ui/
-         docker build -t momentsui .
-      
-     # deploy the Angular image
-     - run: |
-         set -eu -o pipefail
-         echo $HEROKU_API_KEY | docker login --username=$HEROKU_USERNAME --password-stdin registry.heroku.com
-         docker tag momentsui registry.heroku.com/$HEROKU_WEB_APP/webui
-         docker push registry.heroku.com/$HEROKU_WEB_APP/webui
-         docker inspect registry.heroku.com/$HEROKU_WEB_APP/webui --format={{.Id}} > WEB_DOCKER_IMAGE_ID_FILE
-         export WEB_DOCKER_IMAGE_ID=$(cat WEB_DOCKER_IMAGE_ID_FILE)
-         curl -n -X PATCH https://api.heroku.com/apps/$HEROKU_WEB_APP/formation \
-             -d '{ "updates": [ { "type": "web", "docker_image": "'"$WEB_DOCKER_IMAGE_ID"'" }]}' \
-           -H "Content-Type: application/json" \
-           -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
-           -H "Authorization: Bearer $HEROKU_API_KEY"
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.1
+
 workflows:
   main:
     jobs:
