@@ -1,3 +1,5 @@
+version: 2.1
+
 jobs:
  build:
    machine: true
@@ -50,7 +52,7 @@ jobs:
            -H "Authorization: Bearer $HEROKU_API_KEY"
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
-version: 2.1
+
 workflows:
   main:
     jobs:
