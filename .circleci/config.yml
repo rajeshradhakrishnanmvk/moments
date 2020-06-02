@@ -18,6 +18,7 @@ jobs:
          docker info
          cd ./moments.api/moments.space/moments.space.api/
          docker build -t momentsspaceapi .
+     - sonarcloud/scan
      
      # deploy the dotnet core image
      - run: |
@@ -52,11 +53,11 @@ jobs:
            -H "Content-Type: application/json" \
            -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
            -H "Authorization: Bearer $HEROKU_API_KEY"
-     - sonarcloud/scan
+
      
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
-
+version: 2.1
 workflows:
   main:
     jobs:
