@@ -57,7 +57,6 @@ workflows:
   main:
     jobs:
       - build:
-          context: SonarCloud
           filters:
             branches:
               only:
