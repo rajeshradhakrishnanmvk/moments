@@ -18,6 +18,7 @@ jobs:
          docker info
          cd ./moments.api/moments.space/moments.space.api/
          docker build -t momentsspaceapi .
+         
      - sonarcloud/scan
      
      # deploy the dotnet core image
@@ -57,7 +58,7 @@ jobs:
      
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
-version: 2.1
+
 workflows:
   main:
     jobs:
