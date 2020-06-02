@@ -53,6 +53,10 @@ jobs:
            -H "Content-Type: application/json" \
            -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
            -H "Authorization: Bearer $HEROKU_API_KEY"
-
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
