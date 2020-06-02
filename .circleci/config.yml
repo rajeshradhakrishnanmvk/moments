@@ -58,7 +58,7 @@ workflows:
     jobs:
       - build:
           context: SonarCloud
-            filters:
-              branches:
-                only:
-                  - momentsspace
+          filters:
+            branches:
+              only:
+                - momentsspace
