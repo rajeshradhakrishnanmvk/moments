@@ -1,5 +1,7 @@
 jobs:
   build:
+    docker:
+      - image: 'node:latest'
     filters:
       branches:
         only:
