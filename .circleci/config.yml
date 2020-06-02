@@ -1,10 +1,23 @@
 jobs:
-  build:
-    docker:
-      - image: 'node:latest'
-    steps:
-      - checkout
-      - sonarcloud/scan
+ build:
+   filters:
+     branches:
+       only:
+         - momentsspace
+   machine: true
+   steps:
+     - checkout 
+
+     # test
+     - run: |
+         docker-compose -f ./moments.api/moments.space/docker-compose.unittests.yml run --rm unittests
+         
+     # build dotnet core 3.1 image
+     - run: |
+         docker info
+         cd ./moments.api/moments.space/moments.space.api/
+         docker build -t momentsspaceapi .
+     - sonarcloud/scan
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.0
 version: 2.1
