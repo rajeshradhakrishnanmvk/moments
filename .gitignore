@@ -351,3 +351,8 @@ MigrationBackup/
 
 # Rest client responses
 Response*.http
+mvp
+vsdbg
+dbvol
+mg
+sqlvolume

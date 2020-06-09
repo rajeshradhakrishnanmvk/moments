@@ -17,18 +17,22 @@
             "name": ".NET Core Docker Attach",
             "type": "coreclr",
             "request": "attach",
+            "sourceFileMap": {
+                "/src": "${workspaceRoot}/moments.api/moments.auth/moments.auth.api"
+            },
             "processId": "${command:pickRemoteProcess}",
             "pipeTransport": {
                 "pipeProgram": "docker",
                 "pipeArgs": [
                     "exec",
                     "-i",
-                    "7e47d0c2d03f"
+                    "b241de85b8a3"
                 ],
-                "debuggerPath": "/remote_debugger/vsdbg",
-                "pipeCwd": "${workspaceRoot}",
+                "debuggerPath": "/vsdbg/vsdbg",
+                "pipeCwd": "${workspaceRoot}/moments.api/moments.auth/moments.auth.api",
                 "quoteArgs": false
-            }
+            },
+            "justMyCode": false
         },
         {
             "name": "moments.auth",
@@ -65,9 +69,10 @@
                 "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_ENVIRONMENT": "heroku",
                 "PORT": "8151",
-                "MomentDB": "Server=localhost; Database=momentsdb; Uid=test; Pwd=my-secret-pw"
+                "MomentDB": "Server=us-cdbr-east-06.cleardb.net; Database=heroku_d0035188699c568; Uid=bfc74b39afde3a; Pwd=706120dc"
+                //"MomentDB": "Server=localhost; Database=momentsdb; Uid=test; Pwd=my-secret-pw"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
@@ -129,7 +134,7 @@
                 "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_ENVIRONMENT": "heroku",
                 "PORT": "8121"
             },
             "sourceFileMap": {

@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+RUN apt update && \
+    apt-get install -y procps \ 
+    apt install unzip \
+    curl -ssl https://aka.ms.getvsdbgsh | /bin/sh /dev/stdin -v latest -l /vsdbg
+WORKDIR /app
+EXPOSE 80
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY ["moments.category.api.csproj", "./"]
+RUN dotnet restore "moments.category.api.csproj"
+COPY . ./
+RUN dotnet build "moments.category.api.csproj" -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish "moments.category.api.csproj" -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "moments.category.api.dll", "--environment=Docker"]

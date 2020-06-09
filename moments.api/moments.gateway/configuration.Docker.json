@@ -1,12 +1,107 @@
 {
   "ReRoutes": [
     {
+      "DownstreamPathTemplate": "/api/Moments/{userId}/{momentId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "web3",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Moments/{userId}/{momentId}",
+      "UpstreamHttpMethod": [
+        "DELETE",
+        "PUT"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Moments/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "web3",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Moments/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/category",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "web2",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/category",
+      "UpstreamHttpMethod": [
+        "POST",
+        "PUT"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/category/user/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "web2",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/category/user/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "DELETE"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Category/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "web2",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Category/{id}",
+      "UpstreamHttpMethod": [
+        "GET",
+        "DELETE"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
       "DownstreamPathTemplate": "/api/User",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "web4",
-          "Port": 8121
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/User",
@@ -21,13 +116,13 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "web4",
-          "Port": 8121
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/User/{id}",
       "UpstreamHttpMethod": [
         "GET",
-        "Delete"
+        "DELETE"
       ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
@@ -39,8 +134,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "web1",
-          "Port": 8081
+          "Host": "web6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/Register",
@@ -53,8 +148,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "web1",
-          "Port": 8081
+          "Host": "web6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/api/login",
@@ -65,8 +160,8 @@
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
-      "Port": 8500,
+      "Host": "web5",
+      "Port": 80,
       "Type": "Consul"
     }
   }

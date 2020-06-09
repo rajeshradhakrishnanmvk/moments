@@ -6,7 +6,7 @@ services:
         container_name: momentsui01
         build:
           context: ./moments.ui
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.local
         ports:
             - "4200:80"
         environment: 
@@ -26,14 +26,16 @@ services:
         container_name: momentsauthservice01
         build:
           context: ./moments.api/moments.auth/moments.auth.api
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.local.Debug
         ports:
             - "8081:80"
         environment:
             - ASPNETCORE_ENVIRONMENT=Docker
-            - MomentsDB=server=mssql;database=MomentsDB;User Id=sa;Password=1Secure*Password1;
+            - MomentDB=server=mssql;database=MomentsDB;User Id=sa;Password=1Secure*Password1;
+            - PORT=80
         volumes:
-            - ./vsdbg:/remote_debugger/vsdbg
+            - ./vsdbg:/vsdbg
+            - ./moments.api/moments.auth/moments.auth.api:/src
         restart: on-failure
         depends_on: 
             - mssql
@@ -42,12 +44,13 @@ services:
         container_name: momentsauthopservice01
         build:
             context: ./moments.api/moments.auth.op/moments.auth.op.api
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.local
         ports:
             - "8151:80"
         environment:
             - ASPNETCORE_ENVIRONMENT=Docker
-            - MomentsDB=server=mssql;database=MomentsDB;User Id=sa;Password=1Secure*Password1;
+            - MomentDB=Server=db1; Database=momentsdb; Uid=test; Pwd=my-secret-pw;
+            - PORT=80
         volumes:
             - ./vsdbg:/remote_debugger/vsdbg
         restart: on-failure
@@ -58,7 +61,7 @@ services:
         container_name: categoryservice01
         build:
           context: ./moments.api/moments.category/moments.category.api
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.local
         ports:
             - "8091:80"
         volumes:
@@ -69,12 +72,13 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Docker
             - Mongo_DB=mongodb://db:27017
+            - PORT=80
     web3:
         image: momentsservice
         container_name: momentsservice01
         build:
           context: ./moments.api/moments.space/moments.space.api
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.local
         ports:
             - "8131:80"
         volumes:
@@ -85,12 +89,13 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Docker
             - Mongo_DB=mongodb://db:27017
+            - PORT=80
     web4:
         image: userservice
         container_name: userservice01
         build:
           context: ./moments.api/moments.user/moments.user.api
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.local
         ports:
             - "8121:80"
         volumes:
@@ -101,36 +106,48 @@ services:
         environment:
             - ASPNETCORE_ENVIRONMENT=Docker
             - Mongo_DB=mongodb://db:27017
+            - PORT=80
     web5:
         image: momentsgateway
         container_name: momentsmomentsgateway01
         build:
             context: ./moments.api/moments.gateway
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.local
         ports:
             - "8141:80"
         volumes:
             - ./vsdbg:/remote_debugger/vsdbg
+        environment:
+            - PORT=80
         restart: on-failure
     db1:
         image: "mysql"
         ports:
             - "3306:3306"
         volumes:
-            - dbvol:/var/lib/mysql
+            - ./dbvol:/var/lib/mysql
         environment: 
-            MYSQL_RANDOM_ROOT_PASSWORD: Yes
-            MYSQL_DATABASE: momentsdb
-            MYSQL_USER: test
-            MYSQL_PASSWORD: my-secret-pw
+            - MYSQL_RANDOM_ROOT_PASSWORD=Yes
+            - MYSQL_DATABASE=momentsdb
+            - MYSQL_USER=test
+            - MYSQL_PASSWORD=my-secret-pw
     db:
         image: "mongo"
         ports:
             - "27017:27017"
+        volumes:
+            - ./mg/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+            - rajmongodata:/data/db
     mssql:
         image: "mcr.microsoft.com/mssql/server:2017-latest"
+        ports:
+            - "1433:1433"
+        volumes:
+            - ./sqlvolume/data:/var/opt/mssql/data
+            - ./sqlvolume/log:/var/opt/mssql/log
+            - ./sqlvolume/backup:/var/opt/mssql/backup
         environment:
             ACCEPT_EULA: Y
             SA_PASSWORD: 1Secure*Password1
-        ports:
-            - "1433:1433"
+volumes:
+    rajmongodata:
