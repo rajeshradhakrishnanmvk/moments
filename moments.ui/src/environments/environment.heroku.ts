@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  authservice: "http://localhost:8141/api/",
-  cateservice: "http://localhost:8141/api/category",
-  momentsservice: "http://localhost:8141/api/moments",
-  userservice: "http://localhost:8141/api/user"
+  authservice: "https://moments-gateway.herokuapp.com/api/",
+  cateservice: "https://moments-gateway.herokuapp.com/api/category",
+  momentsservice: "https://moments-gateway.herokuapp.com/api/moments",
+  userservice: "https://moments-gateway.herokuapp.com/api/user"
 };
 
 /*
