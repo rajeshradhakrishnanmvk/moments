@@ -55,7 +55,7 @@ jobs:
            -H "Content-Type: application/json" \
            -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
            -H "Authorization: Bearer $HEROKU_API_KEY"
-      - slack/status:
+     - slack/status:
             fail_only: true
             mentions: 'rajeshradhakrishnan'
             only_for_branches: moments-space
