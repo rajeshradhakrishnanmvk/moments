@@ -13,7 +13,11 @@ namespace moments.auth.api
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            using (SentrySdk.Init("https://512517e43b7b4a94bf998f3d472e3334@o405078.ingest.sentry.io/5270124"))
+                {
+                    CreateHostBuilder(args).Build().Run();
+                }
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -16,7 +16,12 @@ jobs:
          cd ./moments.api/moments.space/moments.space.api/
          docker build -t momentsspaceapi .
      - sonarcloud/scan
-     
+     - slack/notify:
+         channel: moments
+         color: '#42e2f4'
+         mentions: 'rajeshradhakrishnan'
+         message: sonar scan completed
+         webhook: webhook
      # deploy the dotnet core image
      - run: |
          set -eu -o pipefail
@@ -50,8 +55,15 @@ jobs:
            -H "Content-Type: application/json" \
            -H "Accept: application/vnd.heroku+json; version=3.docker-releases" \
            -H "Authorization: Bearer $HEROKU_API_KEY"
+      - slack/status:
+            fail_only: true
+            mentions: 'rajeshradhakrishnan'
+            only_for_branches: moments-space
+            webhook: webhook
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
+  jira: circleci/jira@1.1.6
+  slack: circleci/slack@3.4.2
 
 workflows:
   main:
@@ -62,3 +74,5 @@ workflows:
             branches:
               only:
                 - moments-space
+          post-steps:
+            - jira/notify
