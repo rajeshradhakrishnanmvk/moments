@@ -19,9 +19,9 @@ jobs:
      - slack/notify:
          channel: moments
          color: '#42e2f4'
-         mentions: 'rajeshradhakrishnan'
+         mentions: 'Rajesh Radhakrishnan'
          message: sonar scan completed
-         webhook: webhook
+         webhook: $SLACK_WEBHOOK
      # deploy the dotnet core image
      - run: |
          set -eu -o pipefail
@@ -57,9 +57,9 @@ jobs:
            -H "Authorization: Bearer $HEROKU_API_KEY"
      - slack/status:
             fail_only: true
-            mentions: 'rajeshradhakrishnan'
+            mentions: 'Rajesh Radhakrishnan'
             only_for_branches: moments-space
-            webhook: webhook
+            webhook: $SLACK_WEBHOOK
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   jira: circleci/jira@1.1.6
