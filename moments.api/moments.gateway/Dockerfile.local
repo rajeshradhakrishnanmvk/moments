@@ -7,10 +7,10 @@ WORKDIR /src
 COPY ["moments.gateway.csproj", "./"]
 RUN dotnet restore "moments.gateway.csproj"
 COPY . ./
-RUN dotnet build "moments.gateway.csproj" -c Release -o /app
+RUN dotnet build  --no-restore "moments.gateway.csproj" -c Release -o /app --no-cache /restore
 
 FROM build AS publish
-RUN dotnet publish "moments.gateway.csproj" -c Release -o /app
+RUN dotnet publish  --no-restore "moments.gateway.csproj" -c Release -o /app --no-cache /restore
 
 FROM base AS final
 WORKDIR /app

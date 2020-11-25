@@ -48,6 +48,6 @@ export class LoginComponent {
     };
   }
   private log(message: string) {
-    console.log(`NotesService: ${message}`);
+    console.log(`Login Service: ${message}`);
   }
 }

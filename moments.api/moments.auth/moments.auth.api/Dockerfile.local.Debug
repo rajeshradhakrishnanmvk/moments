@@ -7,10 +7,10 @@ WORKDIR /src
 COPY ["moments.auth.api.csproj", "./"]
 RUN dotnet restore "moments.auth.api.csproj"
 COPY . ./
-RUN dotnet build "moments.auth.api.csproj" -c Debug -o /app
+RUN dotnet build  --no-restore "moments.auth.api.csproj" -c Debug -o /app --no-cache /restore
 
 FROM build AS publish
-RUN dotnet publish "moments.auth.api.csproj" -c Debug -o /app
+RUN dotnet publish  --no-restore "moments.auth.api.csproj" -c Debug -o /app --no-cache /restore
 
 FROM base AS final
 RUN apt-get update && \

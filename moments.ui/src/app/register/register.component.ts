@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Observable } from 'rxjs'; 
-import {User} from '../user'
+import { Observable } from 'rxjs';
+import { User } from '../user'
 import { UserprofileService } from '../services/userprofile.service';
-import {AuthenticationService} from '../services/authentication.service'
-import {RouterService} from '../services/router.service';
+import { AuthenticationService } from '../services/authentication.service'
+import { RouterService } from '../services/router.service';
 
 @Component({
   selector: 'app-register',
@@ -11,13 +11,13 @@ import {RouterService} from '../services/router.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  userprofile: User = new User('','');
+  userprofile: User = new User('', '');
   userid: string;
   errMessage: string;
-  registerUser:string;
-  constructor( private userService: UserprofileService
-  , private _authService: AuthenticationService
-  , private routerService: RouterService) {
+  registerUser: string;
+  constructor(private userService: UserprofileService
+    , private _authService: AuthenticationService
+    , private routerService: RouterService) {
     //this.userid=this.data.userid;
   }
 
@@ -27,42 +27,42 @@ export class RegisterComponent implements OnInit {
   onSave() {
     this.userprofile.fullName();
     this._authService.registerUser(this.userprofile)
-    .then(
-      res => { 
-        if(res){
-          this.performLogin();
-      } 
-    }
-    )
-    .catch(this.handleError());;
+      .then(
+        res => {
+          if (res) {
+            this.performLogin();
+          }
+        }
+      )
+      .catch(this.handleError());;
   }
   performLogin() {
     this._authService.authenticateUser(this.userprofile)
-    .then(
-      res => {
-        if(res){
-          this.AddUserDetails();
+      .then(
+        res => {
+          if (res) {
+            this.AddUserDetails();
+          }
+          else {
+            this.errMessage = "No token found"
+          }
         }
-        else{
-          this.errMessage = "No token found"
-        }
-    }
-    )
-    .catch(this.handleError());;
+      )
+      .catch(this.handleError());;
   }
-  AddUserDetails(){
+  AddUserDetails() {
     this.userService.addUser(this.userprofile).subscribe(editUser => {
       //this.dialogRef.close();
-      },
+    },
       error => {
         if (404 === error.status) {
-          this.errMessage =  error.message;
-       }else {
-        this.errMessage = error.message;
-      }
+          this.errMessage = error.message;
+        } else {
+          this.errMessage = error.message;
+        }
       });
   }
-  private handleError () {
+  private handleError() {
     return (error: any): any => {
       if ((error.status === 404 || error.status === 403)) {
         console.error(error);
@@ -73,6 +73,6 @@ export class RegisterComponent implements OnInit {
     };
   }
   private log(message: string) {
-    console.log(`NotesService: ${message}`);
+    console.log(`Login Service: ${message}`);
   }
 }

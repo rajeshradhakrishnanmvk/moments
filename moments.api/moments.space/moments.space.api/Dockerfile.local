@@ -7,10 +7,10 @@ WORKDIR /src
 COPY ["moments.space.api.csproj", "./"]
 RUN dotnet restore "moments.space.api.csproj"
 COPY . ./
-RUN dotnet build "moments.space.api.csproj" -c Release -o /app
+RUN dotnet build --no-restore "moments.space.api.csproj" -c Release -o /app --no-cache /restore
 
 FROM build AS publish
-RUN dotnet publish "moments.space.api.csproj" -c Release -o /app
+RUN dotnet publish  --no-restore "moments.space.api.csproj" -c Release -o /app --no-cache /restore
 
 FROM base AS final
 WORKDIR /app
