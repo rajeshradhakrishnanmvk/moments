@@ -2,7 +2,6 @@
 FROM node:latest AS build
 WORKDIR /app
 COPY . .
-RUN npm update
 RUN npm install
 RUN npm run build
 ### STAGE 2: Run ###
