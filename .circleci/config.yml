@@ -22,6 +22,7 @@ jobs:
          mentions: 'Rajesh Radhakrishnan'
          message: sonar scan completed
          webhook: $SLACK_WEBHOOK
+     - jira/notify
      # deploy the dotnet core image
      - run: |
          set -eu -o pipefail
@@ -60,6 +61,7 @@ jobs:
             mentions: 'Rajesh Radhakrishnan'
             only_for_branches: moments-space
             webhook: $SLACK_WEBHOOK
+     - jira/notify
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   jira: circleci/jira@1.1.6
@@ -74,5 +76,5 @@ workflows:
             branches:
               only:
                 - moments-space
-          post-steps:
-            - jira/notify
+          # post-steps:
+          #   - jira/notify
